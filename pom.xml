@@ -4,7 +4,7 @@
 
     <groupId>tech.tablesaw</groupId>
     <artifactId>tablesaw-parent</artifactId>
-    <version>0.38.2-SNAPSHOT</version>
+    <version>0.38.2-GUSTAVE</version>
     <name>Tablesaw</name>
     <description>High-performance Java Dataframe</description>
     <url>https://github.com/jtablesaw/tablesaw</url>
