@@ -87,7 +87,7 @@ public class DateParser extends AbstractColumnParser<LocalDate> {
     }
     try {
       TemporalAccessor temporalAccessor = formatter.parseBest(s, LocalDateTime::from, LocalDate::from);
-      if (temporalAccessor instanceof LocalDateTime) {
+      if (temporalAccessor instanceof LocalDate) {
         return true;
       }
       return false;
