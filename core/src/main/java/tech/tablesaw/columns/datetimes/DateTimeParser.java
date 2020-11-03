@@ -2,10 +2,12 @@ package tech.tablesaw.columns.datetimes;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.TemporalAccessor;
 import java.util.Locale;
 import tech.tablesaw.api.ColumnType;
 import tech.tablesaw.columns.AbstractColumnParser;
@@ -77,8 +79,11 @@ public class DateTimeParser extends AbstractColumnParser<LocalDateTime> {
       return true;
     }
     try {
-      LocalDateTime.parse(s, formatter.withLocale(locale));
-      return true;
+      TemporalAccessor temporalAccessor = formatter.parseBest(s, LocalDateTime::from, LocalDate::from);
+      if (temporalAccessor instanceof LocalDateTime) {
+        return true;
+      }
+      return false;
     } catch (DateTimeParseException e) {
       // it's all part of the plan
       return false;
